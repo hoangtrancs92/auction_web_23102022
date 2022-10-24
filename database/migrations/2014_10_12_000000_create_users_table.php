@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('firstname',50);
             $table->string('lastname',50);
             $table->enum('sex',['Male','Female','LGBT'])->default('Male');
+//            $table->boolean('sex');
             $table->date('birthday');
             $table->string('address');
             $table->string('image')->nullable();
