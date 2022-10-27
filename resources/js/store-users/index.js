@@ -2,19 +2,17 @@ import { createApp } from 'vue'
 import { createStore } from 'vuex'
 import getters from './getters'
 import userApp from '../UserApp.vue'
-// Create a new store instance.
 
-// const modulesFiles = require.context('./modules', true, /\.js$/)
-const modulesFiles = import.meta.glob("./modules/*.js");
-console.log( modulesFiles[0].name);
-console.log( modulesFiles);
 
-const modules = modulesFiles.keys().reduce((modules, modulePath) => {
-    const moduleName = modulePath.replace(/^\.\/(.*)\.\w+$/, '$1')
-    const value = modulesFiles(modulePath)
-    modules[moduleName] = value.default
-    return modules
-}, {})
+console.log(getters);
+const files = import.meta.globEager("./modules/*.js");
+
+const modules = {};
+for (const key in files) {
+    modules[key.replace(/(\.\/|\.js)/g, "")] = files[key].default;
+}
+console.log(modules);
+
 
 const store = createStore({
     getters,
