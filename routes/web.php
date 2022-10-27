@@ -12,7 +12,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//
+//Route::get('/{any}', function () {
+//    return view('admin');
+//})->where('any', '.*');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('admin')->group(function () {
+    Route::get('/{any}', function () {
+        return view('admin');
+    })->where('any', '.*');
+});
+
+Route::prefix('user')->group(function () {
+    Route::get('/{any}', function () {
+        return view('user');
+    })->where('any', '.*');
 });

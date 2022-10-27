@@ -6,9 +6,8 @@
     @vite('resources/css/app.css')
 </head>
 <body>
-<h1 class="text-3xl font-bold underline">
-    Hello world!
-</h1>
-<h1>Hello world!</h1>
+<div id="userApp"></div>
+
+@vite('resources/js/user-application.js')
 </body>
 </html>
