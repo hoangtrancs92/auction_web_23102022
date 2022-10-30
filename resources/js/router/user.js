@@ -1,7 +1,4 @@
-
-
 import UserLogin from "../pages/users/Login.vue";
-
 
    const routes = [
         {

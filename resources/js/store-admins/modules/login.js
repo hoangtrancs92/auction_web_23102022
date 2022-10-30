@@ -1,15 +1,16 @@
-const state = {
-
-}
-const mutations = {
-
-}
-const actions = {
-
-}
 export default {
-    namespace: true,
-    state,
-    mutations,
-    actions
+    namespaced: true,
+    getters: {
+        name: state => state.name
+    },
+    state: {
+        name: 'admin'
+    },
+    mutations: {
+
+    },
+    actions: {
+
+    },
+
 }

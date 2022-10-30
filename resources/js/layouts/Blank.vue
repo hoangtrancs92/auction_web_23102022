@@ -1,15 +1,11 @@
 <template>
 
-
 </template>
 
 <script>
 export default {
-    data() {
-
-    }
+    name: "Blank"
 }
-
 </script>
 
 <style scoped>

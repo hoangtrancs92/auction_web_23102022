@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import AdminLayout from "../../../layouts/AdminLayout.vue";
+import AdminLayout from "../../../layouts/Admin.vue";
 export default {
     components:{
       AdminLayout

@@ -1,39 +1,32 @@
+import {createApp} from "vue";
+import AdminApp from './AdminApp.vue';
+import PrimeVue from 'primevue/config';
+import AdminRouter from "./admin-router";
+import 'primevue/resources/themes/saga-blue/theme.css'       //theme
+import 'primevue/resources/primevue.min.css'                 //core css
+import 'primeicons/primeicons.css'
 
-// import AdminApp from './AdminApp.vue';
-// import PrimeVue from 'primevue/config';
-// import 'primevue/resources/themes/saga-blue/theme.css'       //theme
-// import 'primevue/resources/primevue.min.css'                 //core css
-// import 'primeicons/primeicons.css'
-// import Button from "primevue/button";
-// import InputText from "primevue/inputtext";
-// import PanelMenu from 'primevue/panelmenu';
-// import Card from 'primevue/card';
-// import Breadcrumb from 'primevue/breadcrumb';
-// import accountRouter from "./account-router";
-//
-//
-//
-//
-// const App = createApp(AdminApp).use(accountRouter).mount('#adminApp');
-// // App.use(primevue);
-//
-// App.component('InputText',InputText);
-// App.component('Button',Button);
-// App.component('PanelMenu',PanelMenu);
-// App.component('Card',Card);
-// App.component('Breadcrumb',Breadcrumb);
-// export default App;
+import Button from "primevue/button";
+import InputText from "primevue/inputtext";
+import PanelMenu from 'primevue/panelmenu';
+import Card from 'primevue/card';
+import Breadcrumb from 'primevue/breadcrumb';
+import Menubar from 'primevue/menubar';
 
-import './bootstrap';
-import {createApp} from 'vue';
-// import Vue from 'vue';
-import adminApp from "./AdminApp.vue";
-import adminRouter from "./admin-router";
+import AdminLayout from './layouts/Admin.vue';
+import BlankLayout from './layouts/Blank.vue';
 
-const App = createApp(adminApp).use(adminRouter).mount('#adminApp');
-// const app = new Vue({
-//     el: '#adminApp',
-//     render: h => h(adminApp)
-// })
+const app = createApp(AdminApp).use(AdminRouter).use(PrimeVue);
+app.mount('#adminApp');
 
-export default App;
+app.component('admin-layout', AdminLayout);
+
+app.component('InputText', InputText);
+app.component('Button', Button);
+app.component('PanelMenu', PanelMenu);
+app.component('Card', Card);
+app.component('Breadcrumb', Breadcrumb);
+app.component('Menubar', Menubar);
+
+export default app;
+
