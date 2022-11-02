@@ -11,5 +11,6 @@
 @vite('resources/js/admin-application.js')
 
 </body>
-<script src="https://kit.fontawesome.com/868c88ea94.js" crossorigin="anonymous"></script>
+{{--<script src="https://kit.fontawesome.com/868c88ea94.js" crossorigin="anonymous"></script>--}}
+
 </html>

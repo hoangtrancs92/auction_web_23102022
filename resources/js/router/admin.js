@@ -10,7 +10,7 @@ const routes = [
         name: 'AdminLogin',
         component: AdminLogin,
         meta: {
-            layout: 'admin',
+            layout: 'blank',
             admin: false
         }
     },
