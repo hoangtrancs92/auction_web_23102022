@@ -1,13 +1,13 @@
 <template>
-<AdminLayout />
+    <span>hellosssssssssssssssssss</span>
 
 </template>
 
 <script>
-import AdminLayout from "../../../layouts/Admin.vue";
+
 export default {
     components:{
-      AdminLayout
+
     },
     name: "HomePage"
 }

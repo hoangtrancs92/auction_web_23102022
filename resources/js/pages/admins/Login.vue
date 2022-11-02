@@ -26,10 +26,6 @@
 
 
 
-
-
-
-
 </template>
 
 <script>

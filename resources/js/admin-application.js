@@ -12,6 +12,9 @@ import PanelMenu from 'primevue/panelmenu';
 import Card from 'primevue/card';
 import Breadcrumb from 'primevue/breadcrumb';
 import Menubar from 'primevue/menubar';
+import Dropdown from 'primevue/dropdown';
+import StyleClass from 'primevue/styleclass';
+import Ripple from 'primevue/ripple';
 
 import AdminLayout from './layouts/Admin.vue';
 import BlankLayout from './layouts/Blank.vue';
@@ -27,6 +30,9 @@ app.component('PanelMenu', PanelMenu);
 app.component('Card', Card);
 app.component('Breadcrumb', Breadcrumb);
 app.component('Menubar', Menubar);
+app.component('Dropdown', Dropdown);
 
+app.directive('styleclass', StyleClass);
+app.directive('ripple', Ripple);
 export default app;
 
