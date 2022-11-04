@@ -9,6 +9,7 @@ import 'primeicons/primeicons.css'
 import 'prismjs/themes/prism-coy.css';
 import 'primeflex/primeflex.css';
 import 'primevue/resources/primevue.css'
+import axios from "axios";
 
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
@@ -23,17 +24,25 @@ import ColumnGroup from 'primevue/columngroup';     //optional for column groupi
 import Row from 'primevue/row';                     //optional for row
 import Toolbar from "primevue/toolbar";
 import Dialog from "primevue/dialog";
+import RadioButton from 'primevue/radiobutton';
+import Calendar from 'primevue/calendar';
+import Checkbox from 'primevue/checkbox';
+import Toast from 'primevue/toast';
 
 import StyleClass from 'primevue/styleclass';
 import Ripple from 'primevue/ripple';
+import ToastService from 'primevue/toastservice';
 
 import AdminLayout from './layouts/Admin.vue';
 import BlankLayout from './layouts/Blank.vue';
 
-const app = createApp(AdminApp).use(AdminRouter).use(store).use(PrimeVue);
+
+const app = createApp(AdminApp).use(AdminRouter).use(store).use(PrimeVue).use(ToastService);
 app.mount('#adminApp');
+app.config.globalProperties.$axios = axios
 
 app.component('admin-layout', AdminLayout);
+app.component('blank-layout', BlankLayout);
 
 app.component('InputText', InputText);
 app.component('Button', Button);
@@ -48,6 +57,10 @@ app.component('ColumnGroup', ColumnGroup);
 app.component('Row', Row);
 app.component('Toolbar', Toolbar);
 app.component('Dialog', Dialog);
+app.component('RadioButton', RadioButton);
+app.component('Calendar', Calendar);
+app.component('Checkbox', Checkbox);
+app.component('Toast', Toast);
 
 app.directive('styleclass', StyleClass);
 app.directive('ripple', Ripple);

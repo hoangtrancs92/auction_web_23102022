@@ -6,12 +6,16 @@
 <script>
 
 export default {
-
-
     components:{
 
     },
-    name: "HomePage"
+    created() {
+
+    },
+    name: "HomePage",
+    methods: {
+
+    }
 }
 </script>
 

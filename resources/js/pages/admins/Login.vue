@@ -1,49 +1,65 @@
 <template>
-<div id="right" style="height:100vh;background-color:#45aaf2"></div>
-    <Card class="card-login">
-        <template #content>
-            <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6 oks" style="width: 50%">
+<div id="right"></div>
+
+            <div class="surface-card p-4 shadow-2 border-round w-full lg:w-4 oks">
                 <div class="text-center mb-5 " style="width: 100%">
-                    <img src="../../../images/logo/admin-svgrepo-com.svg" alt="Image" height="10" class="mb-3" >
+<!--                    <img src="../../../images/logo/admin-svgrepo-com.svg" alt="Image" height="10" class="mb-3" >-->
                     <div class="text-900 text-3xl font-medium mb-3" style="padding-top:10px">Admin</div>
                 </div>
-
                 <div>
                     <label for="email1" class="block text-900 font-medium mb-2">Email</label>
-                    <InputText id="email1" type="text" class="w-full mb-3" />
+                    <InputText id="email1" type="text" class="w-full mb-3" v-model="editAdmin.email" />
 
                     <label for="password1" class="block text-900 font-medium mb-2">Password</label>
-                    <InputText id="password1" type="password" class="w-full mb-3" />
+                    <InputText id="password1" type="password" class="w-full mb-3" v-model="editAdmin.password"/>
 
                     <div class="flex align-items-center justify-content-between mb-6">
                     </div>
-                    <Button label="Login" class="w-full btn-login"></Button>
+                    <Button label="Đăng nhập" class="w-full btn-login" @click="handleSubmit()"></Button>
                 </div>
             </div>
-        </template>
-
-    </Card>
-
 
 
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
-    name: "LoginAdmin"
+    name: "Login",
+    data(){
+        return {
+            secrets: [],
+            editAdmin: {
+                email: '',
+                password: ''
+            }
+        }
+    },
+    created() {
+        this.checkRedirectPage()
+    },
+    methods: {
+        ...mapActions('login', ['loginAdmin']),
+        checkRedirectPage(){
+            let token = localStorage.getItem('admin_token')
+            token === null || token === '' ? this.$router.push(`/admin/login`) : this.$router.push(`/admin/dashboard`)
+        },
+        async handleSubmit() {
+            const res = await this.loginAdmin(Object.assign({},  this.editAdmin))
+            if (res.data.status_code === 200){
+                localStorage.setItem('admin_token', res.data.access_token)
+                this.$router.push('/admin/dashboard')
+            }
+            else {
+                this.$toast.add({severity:'error', summary: 'Unauthorized', detail:'Lỗi đăng nhập', life: 3000});
+            }
+        }
+    }
 }
 </script>
 
 <style scoped>
-    .card-login{
-        width:50%;
-        height:600px;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 8%;
-    }
     .oks{
         position: absolute;
         left: 50%;
@@ -58,12 +74,6 @@ export default {
         align-items: center;
         height: 100%;
         margin: 0 auto;
-    }
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        background-color: #1a202c;
     }
     .btn-login{
         display: flex;

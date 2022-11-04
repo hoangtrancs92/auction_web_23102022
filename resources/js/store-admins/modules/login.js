@@ -1,16 +1,21 @@
+import {ApiCaller} from "../../api/api";
+import {URLS} from "../../api/url";
+
 export default {
     namespaced: true,
     getters: {
-        name: state => state.name
+        edit_admin: state => state.edit_admin,
     },
     state: {
-        name: 'admin'
+        edit_admin : {}
     },
     mutations: {
 
     },
     actions: {
-
+        loginAdmin({}, payload) {
+            return ApiCaller().post(URLS.ADMIN_LOGIN(), payload)
+        }
     },
 
 }

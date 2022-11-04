@@ -15,7 +15,15 @@ const router = createRouter({
     history:createWebHistory(),
     routes
 })
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.AdminLogin)) {
+        if (localStorage.getItem('admin_token') == null) {
+            routes.push('/admin/login')
+        }
+    }
 
+    next()
+})
 // router.beforeEach(async (to, from, next) => {
 //     window.scrollTo(0, 0)
 //     if (to.matched.some(record => record.meta.user && !record.meta.login)) {

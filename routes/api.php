@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,11 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+
 Route::prefix('admin')->group(function () {
-    Route::get('/user-manager',[\App\Http\Controllers\admins\UserManagerController::class,'index'])->name('user-manager');
+    Route::group(['middleware' => ['auth:sanctum']], function() {
+        Route::get('/user-manager',[\App\Http\Controllers\api\v1\admins\UserManagerController::class,'index'])->name('user-manager');
+        Route::get('/logout',[\App\Http\Controllers\api\v1\admins\UserManagerController::class,'logout'])->name('admin-logout');
+    });
+    Route::post('/login',[\App\Http\Controllers\api\v1\admins\auth\AdminAuthController::class,'login'])->name('admin-login');
 });
 Route::prefix('user')->group(function () {
-    Route::get('/user-manager',[\App\Http\Controllers\admins\UserManagerController::class,'index'])->name('user-manager');
-});Route::prefix('shop')->group(function () {
-    Route::get('/user-manager',[\App\Http\Controllers\admins\UserManagerController::class,'index'])->name('user-manager');
+    Route::post('/login',[\App\Http\Controllers\api\v1\users\auth\UserAuthController::class,'login'])->name('user-login');
+    Route::group(['middleware' => ['auth:sanctum']], function() {
+
+    });
+});
+Route::prefix('shop')->group(function () {
+    Route::post('/login',[\App\Http\Controllers\api\v1\admins\auth\AdminAuthController::class,'login'])->name('admin-login');
+    Route::get('/user-manager',[\App\Http\Controllers\api\v1\admins\UserManagerController::class,'index'])->name('user-manager');
 });

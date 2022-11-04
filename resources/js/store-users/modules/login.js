@@ -19,7 +19,6 @@ export default {
     },
     actions: {
         changeNameUser({state, commit, dispatch, rootState}, payload){
-            console.log(payload)
             commit('CHANGE_FULLNAME',payload)
         }
     },

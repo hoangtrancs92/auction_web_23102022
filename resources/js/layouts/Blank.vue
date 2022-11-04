@@ -1,5 +1,6 @@
 <template>
-
+    <router-view />
+    <Toast position="top-center" />
 </template>
 
 <script>
