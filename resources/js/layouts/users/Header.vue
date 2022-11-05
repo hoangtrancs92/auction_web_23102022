@@ -1,17 +1,18 @@
 <template>
-    <Card>
-        <template #content>
-            <span>day la card</span>
-        </template>
-    </Card>
+   <button @click="logout()"> logout </button>
 </template>
 
-<script>
+<script >
+
 export default {
-    name: "Header"
+    methods: {
+        logout() {
+            localStorage.removeItem('customer_token')
+            setTimeout(3000)
+            if (localStorage.getItem('customer_token') === null ){
+                this.$router.push('/user/login')
+            }
+        },
+    }
 }
 </script>
-
-<style scoped>
-
-</style>

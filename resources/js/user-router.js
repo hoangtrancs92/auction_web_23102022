@@ -16,12 +16,12 @@ const router = createRouter({
     routes
 })
 router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.AdminLogin)) {
-        if (localStorage.getItem('admin_token') == null) {
-            routes.push('/admin/login')
+    console.log(to.matched.some(record => record.meta.user))
+    if (to.matched.some(record => record.meta.user)) {
+        if (localStorage.getItem('customer_token') ===   null) {
+            router.push('/user/login')
         }
     }
-
     next()
 })
 // router.beforeEach(async (to, from, next) => {

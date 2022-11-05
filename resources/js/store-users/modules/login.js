@@ -1,25 +1,20 @@
+import {ApiCaller} from "../../api/api";
+import {URLS} from "../../api/url";
+
 export default {
     namespaced: true,
     getters: {
-        fullName:  state => `${state.test1} `,
-        fullName2:  state => `${state.test2} `,
+        edit_customer: state => state.edit_customer
     },
     state: {
-        test1: 'hoang tran',
-        test2: 123456,
-        test3: true
+       edit_customer: {}
     },
     mutations: {
-        CHANGE_FULLNAME(state, payload){
-            state.test1 = payload
-        },
-        CHANGE_FULLNAME2(state, payload){
-            state.test2 = payload
-        }
+
     },
     actions: {
-        changeNameUser({state, commit, dispatch, rootState}, payload){
-            commit('CHANGE_FULLNAME',payload)
-        }
+        loginCustomer({}, payload) {
+            return ApiCaller().post(URLS.CUSTOMER_LOGIN(), payload)
+        },
     },
 }
