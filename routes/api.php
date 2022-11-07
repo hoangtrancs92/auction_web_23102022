@@ -17,6 +17,9 @@ Route::prefix('admin')->group(function () {
     Route::group(['middleware' => ['auth:sanctum']], function() {
         Route::get('/user-manager',[\App\Http\Controllers\api\v1\admins\UserManagerController::class,'index'])->name('user-manager');
         Route::post('/logout',[\App\Http\Controllers\api\v1\admins\auth\AdminAuthController::class,'logout'])->name('admin-logout');
+        Route::post('/user-created',[\App\Http\Controllers\api\v1\admins\UserManagerController::class,'store'])->name('admin-user-created');
+        Route::post('/user-updated/{id}',[\App\Http\Controllers\api\v1\admins\UserManagerController::class,'update'])->name('admin-user-updated');
+        Route::delete('/user-deleted/{id}',[\App\Http\Controllers\api\v1\admins\UserManagerController::class,'destroy'])->name('admin-user-deleted');
     });
     Route::post('/login',[\App\Http\Controllers\api\v1\admins\auth\AdminAuthController::class,'login'])->name('admin-login');
 });

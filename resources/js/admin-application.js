@@ -28,16 +28,20 @@ import RadioButton from 'primevue/radiobutton';
 import Calendar from 'primevue/calendar';
 import Checkbox from 'primevue/checkbox';
 import Toast from 'primevue/toast';
+import ConfirmDialog from 'primevue/confirmdialog';
+
 
 import StyleClass from 'primevue/styleclass';
 import Ripple from 'primevue/ripple';
 import ToastService from 'primevue/toastservice';
+import ConfirmationService from 'primevue/confirmationservice';
+
 
 import AdminLayout from './layouts/Admin.vue';
 import BlankLayout from './layouts/Blank.vue';
 
 
-const app = createApp(AdminApp).use(AdminRouter).use(store).use(PrimeVue).use(ToastService);
+const app = createApp(AdminApp).use(AdminRouter).use(store).use(PrimeVue).use(ToastService).use(ConfirmationService);
 app.mount('#adminApp');
 app.config.globalProperties.$axios = axios
 
@@ -61,6 +65,7 @@ app.component('RadioButton', RadioButton);
 app.component('Calendar', Calendar);
 app.component('Checkbox', Checkbox);
 app.component('Toast', Toast);
+app.component('ConfirmDialog', ConfirmDialog);
 
 app.directive('styleclass', StyleClass);
 app.directive('ripple', Ripple);

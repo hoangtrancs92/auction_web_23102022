@@ -46,4 +46,7 @@ class UserAuthController extends Controller
             ]);
         }
     }
+    public function register(Request $request){
+
+    }
 }

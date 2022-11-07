@@ -9,8 +9,9 @@
                 <router-view />
             </div>
         </div>
-
     </div>
+    <Toast position="top-center" />
+    <ConfirmDialog></ConfirmDialog>
 </template>
 
 <script>
