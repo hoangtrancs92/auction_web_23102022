@@ -20,8 +20,8 @@
         <Column field="sex" header="Giới tính"></Column>
         <Column header="Hành động">
             <template #body="slotProps">
-                <Button icon="pi pi-pencil" class="p-button-rounded mr-4 "  />
-                <Button icon="pi pi-trash" class="p-button-rounded p-button-danger mt-2" />
+                <Button icon="pi pi-pencil" class="p-button-rounded mr-4 " @click="showEditCustomer(slotProps.data)" />
+                <Button icon="pi pi-trash" class="p-button-rounded p-button-danger mt-2"  @click="destroyCustomer(slotProps.data.id)"/>
             </template>
         </Column>
         <template #paginatorstart>
@@ -43,20 +43,38 @@ export default {
     },
     computed: {
         ...mapGetters({
-            admin_customers : 'customer/customers'
+            admin_customers : 'customer/customers',
+
         })
     },
     methods: {
-        ...mapMutations('customer', ['CHANGE_STATUS_DIALOG','SET_CUSTOMERS']),
-        ...mapActions('customer', ['fetchCustomers']),
+        ...mapMutations('customer', ['CHANGE_STATUS_DIALOG', 'SET_CUSTOMERS', 'SET_CUSTOMER','CHANGE_STATUS_IS_EDIT']),
+        ...mapActions('customer', ['fetchCustomers', 'deletedCustomer']),
         show_dialog() {
             this.CHANGE_STATUS_DIALOG(true)
+            this.CHANGE_STATUS_IS_EDIT(false)
+            this.SET_CUSTOMER({})
         },
-        async fetchData() {
-           const res = await this.fetchCustomers()
-            if(res.status === 200) {
-                this.SET_CUSTOMERS(res.data)
+        fetchData() {
+            this.fetchCustomers()
+        },
+        destroyCustomer(value) {
+          this.$confirm.require({
+            message: 'Bạn có muốn xoá khách hàng này không ?',
+            header: 'Xác nhận',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.deletedCustomer(value)
+                this.$toast.add({severity:'success', summary: 'Success Message', detail: 'Xoá thành công', life: 3000});
+                this.fetchCustomers()
             }
+        });
+        },
+        showEditCustomer(data){
+            console.log(data)
+            this.CHANGE_STATUS_IS_EDIT(true)
+            this.CHANGE_STATUS_DIALOG(true)
+            this.SET_CUSTOMER(data)
         }
     },
 }

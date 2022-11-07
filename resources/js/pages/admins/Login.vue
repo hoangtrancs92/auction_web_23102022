@@ -23,16 +23,16 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import {mapActions, mapMutations} from "vuex";
 
 export default {
     name: "Login",
     data(){
         return {
-            secrets: [],
             editAdmin: {
                 email: '',
                 password: ''
+
             }
         }
     },
@@ -41,12 +41,15 @@ export default {
     },
     methods: {
         ...mapActions('login', ['loginAdmin']),
+        ...mapMutations('login',['CHANGE_EDIT_ADMIN']),
         checkRedirectPage(){
             let token = localStorage.getItem('admin_token')
             token === null || token === '' ? this.$router.push(`/admin/login`) : this.$router.push(`/admin/dashboard`)
         },
         async handleSubmit() {
+            console.log( this.editAdmin);
             const res = await this.loginAdmin(Object.assign({},  this.editAdmin))
+            this.CHANGE_EDIT_ADMIN(this.editAdmin)
             if (res.data.status_code === 200){
                 localStorage.setItem('admin_token', res.data.access_token)
                 this.$router.push('/admin/dashboard')

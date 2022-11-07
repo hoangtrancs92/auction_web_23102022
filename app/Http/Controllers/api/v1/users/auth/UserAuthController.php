@@ -21,12 +21,12 @@ class UserAuthController extends Controller
                     'password.required' => 'Bạn phải nhập password vào',
                 ]);
             $credentials = request(['email', 'password']);
-            if (!Auth::attempt($credentials)) {
-                return response()->json([
-                    'status_code' => 500,
-                    'message' => 'Sai thông tin đăng nhập'
-                ]);
-            }
+//            if (!Auth::attempt($credentials)) {
+//                return response()->json([
+//                    'status_code' => 500,
+//                    'message' => 'Sai thông tin đăng nhập'
+//                ]);
+//            }
             $admin = user::where('email', $request->email)->first();
             if (!Hash::check($request->password, $admin->password, [])) {
                 throw new \Exception('Error in Login loi dell gi vay');
@@ -40,11 +40,13 @@ class UserAuthController extends Controller
             ]);
         } catch (\Exception $error) {
             return response()->json([
-
                 'status_code' => 500,
                 'message' => 'Error in Login',
                 'error' => $error->getMessage(),
             ]);
         }
+    }
+    public function register(Request $request){
+
     }
 }

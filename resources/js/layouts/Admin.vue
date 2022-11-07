@@ -9,8 +9,9 @@
                 <router-view />
             </div>
         </div>
-
     </div>
+    <Toast position="top-center" />
+    <ConfirmDialog></ConfirmDialog>
 </template>
 
 <script>
@@ -67,8 +68,7 @@ export default {
                     {
                         label: 'Tài khoản',
                         items: [
-                            {label: 'PrimeIcons', icon: 'pi pi-fw pi-prime', to: '/icons'},
-                            {label: 'PrimeFlex', icon: 'pi pi-fw pi-desktop', url: 'https://www.primefaces.org/primeflex/', target: '_blank'},
+                            {label: 'Đăng xuất', icon: 'pi pi-fw pi-prime', to: '/admin/logout'},
                         ]
                     },
                     // {

@@ -51,7 +51,7 @@ class AdminAuthController extends Controller
 //
 //
 //        $token->delete();
-            return response()->json($accessToken);
+            return response()->json( $request);
     }
 
 }
