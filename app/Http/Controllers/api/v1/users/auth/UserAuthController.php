@@ -4,9 +4,13 @@ namespace App\Http\Controllers\api\v1\users\auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Rules\MobileNo;
+use App\Rules\ViettelNo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserAuthController extends Controller
 {
@@ -21,12 +25,6 @@ class UserAuthController extends Controller
                     'password.required' => 'Bạn phải nhập password vào',
                 ]);
             $credentials = request(['email', 'password']);
-//            if (!Auth::attempt($credentials)) {
-//                return response()->json([
-//                    'status_code' => 500,
-//                    'message' => 'Sai thông tin đăng nhập'
-//                ]);
-//            }
             $admin = user::where('email', $request->email)->first();
             if (!Hash::check($request->password, $admin->password, [])) {
                 throw new \Exception('Error in Login loi dell gi vay');
@@ -47,6 +45,49 @@ class UserAuthController extends Controller
         }
     }
     public function register(Request $request){
+        $validator = Validator::make($request->all(), [
+            'firstname' => 'required|regex:/^[a-zA-Z]+$/u',
+            'lastname' => 'required|regex:/^[a-zA-Z]+$/u',
+            'email' => 'required|email',
+            'phone' =>  ['required', new MobileNo,'numeric','digits:10'],
+//            'phone' =>  ['required','regex:/[0][3][2-9]{7}/','regex:/[0][7][6-9]{7}/','numeric','digits:10'],
+            'sex' => 'required',
+            'password' => [
+                'required',
+                'regex:/[a-z]/',
+                'regex:/[A-Z]/',
+                'regex:/[0-9]/',
+                'min:8'
+                ],
+            'address' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()], 401);
+        }
+        $name = '';
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $name = date('YmdHi').$request->file('image')->getClientOriginalName();
+            $destinationPath = public_path('/images/avatar');
+            $imagePath = $destinationPath . "/" . $name;
+            $image->move($destinationPath, $imagePath);
+        }
+        $postArray = [
+            'firstname'  => $request->firstname,
+            'lastname'  => $request->lastname,
+            'email'     => $request->email,
+            'phone'     => $request->phone,
+            'password'  => Hash::make($request->password),
+            'remember_token' => $request->token,
+            'created_at'=> Carbon::now('Asia/Ho_Chi_Minh'),
+            'updated_at'=>Carbon::now('Asia/Ho_Chi_Minh'),
+            'image'=> $name
+        ];
+
+
+        $user = User::create($postArray);
+        return Response()->json(array("success"=> 1,"data"=>$postArray,"status"=>200 ));
 
     }
+
 }

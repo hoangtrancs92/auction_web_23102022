@@ -16,17 +16,16 @@ return new class extends Migration
         Schema::create('win_biddings', function (Blueprint $table) {
             $table->id();
             $table->enum('delivery_status',['Dang Xu ly','Dang Giao Hang','Thanh Cong'])->default('Dang Xu ly');
-            $table->timestamps();
             $table->unsignedBigInteger('id_bid');
             $table->unsignedBigInteger('id_payment');
             $table->unsignedBigInteger('id_user');
-            $table->unsignedBigInteger('id_transport_shop');
-
+            $table->unsignedBigInteger('id_transport_admin');
+            $table->timestamps();
 
             $table->foreign('id_bid')->references('id')->on('bids');
             $table->foreign('id_payment')->references('id')->on('payments');
             $table->foreign('id_user')->references('id')->on('users');
-            $table->foreign('id_transport_shop')->references('id')->on('transport_shops');
+            $table->foreign('id_transport_admin')->references('id')->on('transport_admins');
         });
     }
 

@@ -3,7 +3,6 @@
 
             <div class="surface-card p-4 shadow-2 border-round w-full lg:w-4 oks">
                 <div class="text-center mb-5 " style="width: 100%">
-<!--                    <img src="../../../images/logo/admin-svgrepo-com.svg" alt="Image" height="10" class="mb-3" >-->
                     <div class="text-900 text-3xl font-medium mb-3" style="padding-top:10px">Admin</div>
                 </div>
                 <div>
@@ -18,8 +17,6 @@
                     <Button label="Đăng nhập" class="w-full btn-login" @click="handleSubmit()"></Button>
                 </div>
             </div>
-
-
 </template>
 
 <script>
@@ -32,7 +29,6 @@ export default {
             editAdmin: {
                 email: '',
                 password: ''
-
             }
         }
     },

@@ -97,6 +97,7 @@ export default {
             this.CHANGE_STATUS_DIALOG(false)
         },
         async onSubmitCustomer(){
+
             let res = ''
             if(this.is_edit) {
                 res = await  this.updatedCustomer(this.customer)

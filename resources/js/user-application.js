@@ -30,6 +30,8 @@ import Calendar from 'primevue/calendar';
 import Password from 'primevue/password';
 import Checkbox from 'primevue/checkbox';
 import Image from 'primevue/image';
+import FileUpload from 'primevue/fileupload';
+
 
 import UserLayout from './layouts/User.vue'
 import BlankLayout from './layouts/Blank.vue'
@@ -59,6 +61,7 @@ app.component('Password', Password);
 app.component('Row', Row);
 app.component('Checkbox', Checkbox);
 app.component('Image', Image);
+app.component('FileUpload', FileUpload);
 
 
 

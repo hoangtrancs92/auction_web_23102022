@@ -13,20 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
             $table->id();
+            $table->rememberToken()->nullable();
             $table->string('firstname',50)->nullable();
             $table->string('lastname',50)->nullable();
-            $table->enum('sex',['Male','Female','LGBT'])->default('Male');
-//            $table->boolean('sex');
-            $table->date('birthday')->nullable();
-            $table->string('address')->nullable();
-            $table->string('image')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('name')->nullable();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->rememberToken()->nullable();
+            $table->string('phone')->unique()->nullable();
+            $table->enum('sex',['Male','Female','LGBT'])->default('Male');
+            $table->date('birthday')->nullable();
+            $table->text('address')->nullable();
+            $table->string('image',255)->nullable();
+            $table->integer('admin_type')->nullable();
             $table->timestamps();
         });
     }
@@ -38,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('admins');
     }
 };

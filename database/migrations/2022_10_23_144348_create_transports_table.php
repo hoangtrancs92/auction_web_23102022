@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->enum('transport_type',['GHTK','GHN','Ninja','Express'])->default('GHN');
+            $table->boolean('is_active');
             $table->timestamps();
         });
     }
