@@ -20,6 +20,13 @@
                         </div>
                         <small v-if="(v$.name.$invalid && submitted) || v$.name.$pending.$response" class="p-error">{{v$.name.required.$message.replace('Value', 'Name')}}</small>
                     </div>
+<!--                    Birthday-->
+                    <div class="field">
+                        <div class="p-float-label">
+                            <Calendar id="date" v-model="date" :showIcon="true" />
+                            <label for="date">Năm sinh</label>
+                        </div>
+                    </div>
 <!--                    Phone-->
                     <div class="field">
                         <div class="p-float-label">
@@ -29,6 +36,13 @@
                         <small v-if="(v$.name.$invalid && submitted) || v$.name.$pending.$response" class="p-error">{{v$.name.required.$message.replace('Value', 'Name')}}</small>
                     </div>
 
+                    <div class="field">
+                        <div class="p-float-label">
+                            <InputText id="address" :class="{'p-invalid':v$.name.$invalid && submitted}" />
+                            <label for="address" :class="{'p-error':v$.name.$invalid && submitted}">Địa chỉ</label>
+                        </div>
+                        <small v-if="(v$.name.$invalid && submitted) || v$.name.$pending.$response" class="p-error">{{v$.name.required.$message.replace('Value', 'Name')}}</small>
+                    </div>
 <!--                    Email-->
                     <div class="field">
                         <div class="p-float-label p-input-icon-right">
@@ -65,13 +79,14 @@
                         <small v-if="(v$.password.$invalid && submitted) || v$.password.$pending.$response" class="p-error">{{v$.password.required.$message.replace('Value', 'Password')}}</small>
                     </div>
                     <div class="field">
-                        <div class="p-float-label">
-                            <Calendar id="date" v-model="date" :showIcon="true" />
-                            <label for="date">Năm sinh</label>
-                        </div>
+                        <FileUpload mode="basic" name="demo[]" url="./upload" />
+                    </div>
+                    <div class="field">
+                        <router-link to="/user/login" class="font-medium no-underline ml-2 text-right cursor-pointer">Đã có tài khoản ?</router-link>
+                        <Button type="submit" label="Tạo tài khoản" class="mt-2" />
                     </div>
 
-                    <Button type="submit" label="Tạo tài khoản" class="mt-2" />
+
                 </form>
             </div>
         </div>

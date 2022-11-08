@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers\api\v1\admins;
 
+use App\Http\Controllers\api\v1\admins\auth\AdminAuthController;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Rules\MobileNo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use function response;
 
-class UserManagerController extends Controller
+class UserManagerController extends AdminAuthController
 {
     public function index(){
 //        $users = DB::table('users')->get();
         $users =  User::orderBy("created_at", "desc")->get();
-
 //        $users = User::all()->sortByDesc("created_at");
         return response()->json($users);
     }

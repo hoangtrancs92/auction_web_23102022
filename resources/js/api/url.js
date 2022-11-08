@@ -11,6 +11,7 @@ export const URLS = {
     ADMIN_LOGIN: () => `${getBaseUrl()}/admin/login`,
     AMIN_LOGOUT: () => `${getBaseUrl()}/admin/logout`,
     // customer
-    CUSTOMER_LOGIN: () => `${getBaseUrl()}/customer/login`
+    CUSTOMER_LOGIN: () => `${getBaseUrl()}/customer/login`,
+    CUSTOMER_REGISTER: () => `${getBaseUrl()}/customer/register`
 
 }

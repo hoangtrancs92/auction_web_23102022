@@ -26,6 +26,7 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('customer')->group(function () {
     Route::post('/login',[\App\Http\Controllers\api\v1\users\auth\UserAuthController::class,'login'])->name('customer-login');
+    Route::post('/register',[\App\Http\Controllers\api\v1\users\auth\UserAuthController::class,'register'])->name('customer-register');
     Route::group(['middleware' => ['auth:sanctum']], function() {
 
     });

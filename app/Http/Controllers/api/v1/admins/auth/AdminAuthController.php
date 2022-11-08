@@ -45,11 +45,8 @@ class AdminAuthController extends Controller
     public function logout(Request $request){
             $request->user()->tokens()->delete();
             $accessToken = $request->bearerToken();
-
             // Get access token from database
 //        $token = PersonalAccessToken::findToken($accessToken);
-//
-//
 //        $token->delete();
             return response()->json( $request);
     }

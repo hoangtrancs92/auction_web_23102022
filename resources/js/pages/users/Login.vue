@@ -18,7 +18,7 @@
 <!--                            <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(&#45;&#45;primary-color)">Quên mật khẩu ?</a>-->
                             <router-link to="/user/register" class="font-medium no-underline ml-2 text-right cursor-pointer">Chưa có tài khoản ?</router-link>
                         </div>
-                        <Button label="Sign In" class="w-full p-3 text-xl" @click="handleSubmit()"></button>
+                        <Button label="Đăng nhập" class="w-full p-3 text-xl" @click="handleSubmit()"></button>
                     </div>
                 </div>
             </div>

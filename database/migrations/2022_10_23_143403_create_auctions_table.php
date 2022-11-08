@@ -19,10 +19,10 @@ return new class extends Migration
             $table->dateTime('time_end');
             $table->integer('price_start');
             $table->timestamps();
-            $table->unsignedBigInteger('id_shop');
+            $table->unsignedBigInteger('id_admin');
             $table->unsignedBigInteger('id_product');
 
-            $table->foreign('id_shop')->references('id')->on('shops');
+            $table->foreign('id_admin')->references('id')->on('admins');
             $table->foreign('id_product')->references('id')->on('products');
         });
     }

@@ -14,13 +14,13 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-         \App\Models\Role::factory()->create([
-             'name' => 'admin',
-
-         ]);
-        \App\Models\Role::factory()->create([
-            'name' => 'user',
-
-        ]);
+//         \App\Models\Role::factory()->create([
+//             'name' => 'admin',
+//
+//         ]);
+//        \App\Models\Role::factory()->create([
+//            'name' => 'user',
+//
+//        ]);
     }
 }
