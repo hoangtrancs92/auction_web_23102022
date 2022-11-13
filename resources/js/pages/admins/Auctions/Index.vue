@@ -1,13 +1,13 @@
 <template>
-    <Slider />
+    <ListAuction />
 </template>
 
 <script>
-import Slider from "./Slider.vue";
+import ListAuction from "./ListAuction.vue";
 export default {
     name: "Index",
     components: {
-        Slider
+        ListAuction
     }
 }
 </script>

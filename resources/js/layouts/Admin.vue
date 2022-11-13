@@ -41,7 +41,6 @@ export default {
                         label: 'Khách hàng', icon: 'pi pi-fw pi-sitemap',
                         items: [
                             {label: 'Danh sách khách hàng', icon: 'pi pi-fw pi-id-card', to: '/admin/customers'},
-                            // {label: 'Input', icon: 'pi pi-fw pi-check-square', to: '/input'},
                             // {label: "Float Label", icon: "pi pi-fw pi-bookmark", to: "/floatlabel"},
                             // {label: "Invalid State", icon: "pi pi-fw pi-exclamation-circle", to: "/invalidstate"},
                             // {label: 'Button', icon: 'pi pi-fw pi-mobile', to: '/button'},
@@ -61,14 +60,14 @@ export default {
                     {
                         label: 'Sản phẩm',
                         items: [
-                            {label: 'Danh sách sản phẩm', icon: 'pi pi-fw pi-box', to: '/admin/products', badge: "NEW"},
-                            {label: 'All Blocks', icon: 'pi pi-fw pi-globe', url: 'https://www.primefaces.org/primeblocks-vue', target: '_blank'}
+                            {label: 'Danh sách loại sản phẩm', icon: 'pi pi-fw pi-check-square', to: '/admin/categories'},
+                            {label: 'Danh sách sản phẩm', icon: 'pi pi-fw pi-box', to: '/admin/products', badge: "NEWs"}
                         ]
                     },
                     {
-                        label: 'Tài khoản',
+                        label: 'Phiên đấu giá',
                         items: [
-                            {label: 'Đăng xuất', icon: 'pi pi-fw pi-prime', to: '/admin/logout'},
+                            {label: 'Danh sách phiên', icon: 'pi pi-calendar-times', to: '/admin/auctions'},
                         ]
                     },
                     // {

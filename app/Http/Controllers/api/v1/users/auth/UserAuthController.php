@@ -9,6 +9,7 @@ use App\Rules\ViettelNo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -46,20 +47,17 @@ class UserAuthController extends Controller
     }
     public function register(Request $request){
         $validator = Validator::make($request->all(), [
-            'firstname' => 'required|regex:/^[a-zA-Z]+$/u',
-            'lastname' => 'required|regex:/^[a-zA-Z]+$/u',
+            'firstname' => 'required',
+            'lastname' => 'required',
             'email' => 'required|email',
             'phone' =>  ['required', new MobileNo,'numeric','digits:10'],
 //            'phone' =>  ['required','regex:/[0][3][2-9]{7}/','regex:/[0][7][6-9]{7}/','numeric','digits:10'],
-            'sex' => 'required',
             'password' => [
-                'required',
                 'regex:/[a-z]/',
                 'regex:/[A-Z]/',
                 'regex:/[0-9]/',
                 'min:8'
                 ],
-            'address' => 'required',
         ]);
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 401);
@@ -72,11 +70,14 @@ class UserAuthController extends Controller
             $imagePath = $destinationPath . "/" . $name;
             $image->move($destinationPath, $imagePath);
         }
+        $date = Carbon::parse($request->input('birthday'));
         $postArray = [
             'firstname'  => $request->firstname,
             'lastname'  => $request->lastname,
             'email'     => $request->email,
             'phone'     => $request->phone,
+            'birthday'  => $date,
+            'address'  => $request->address,
             'password'  => Hash::make($request->password),
             'remember_token' => $request->token,
             'created_at'=> Carbon::now('Asia/Ho_Chi_Minh'),

@@ -51,9 +51,7 @@ export default {
         },
         async handleSubmit() {
             const res = await this.loginCustomer(Object.assign({},  this.editCustomer))
-            console.log(res)
             if (res.data.status_code === 200){
-                console.log(res.data)
                 localStorage.setItem('customer_token', res.data.access_token)
                 this.$router.push('/user/home')
             }

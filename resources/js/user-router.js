@@ -16,7 +16,6 @@ const router = createRouter({
     routes
 })
 router.beforeEach((to, from, next) => {
-    console.log(to.matched.some(record => record.meta.user))
     if (to.matched.some(record => record.meta.user)) {
         if (localStorage.getItem('customer_token') ===   null) {
             router.push('/user/login')
@@ -24,17 +23,4 @@ router.beforeEach((to, from, next) => {
     }
     next()
 })
-// router.beforeEach(async (to, from, next) => {
-//     window.scrollTo(0, 0)
-//     if (to.matched.some(record => record.meta.user && !record.meta.login)) {
-//         localStorage.setItem('url', to.path)
-//         if (localStorage.getItem(JWT_USER_KEY) == null) {
-//             await window.liff.init({ liffId: process.env.LIFF_ID })
-//             window.liff.logout()
-//             router.push({ path: '/user/categories' })
-//         }
-//     }
-//     next()
-// })
-
 export default router

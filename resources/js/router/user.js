@@ -1,6 +1,7 @@
-import UserLogin from "../pages/users/Login.vue";
-import UserRegister from "../pages/users/Register.vue";
+import UserLogin from "../pages/users/Login.vue"
+import UserRegister from "../pages/users/Register.vue"
 import UserHome from "../pages/users/homes/Index.vue"
+import UserBid from "../pages/users/bids/Index.vue"
 
    const routes = [
         {
@@ -28,6 +29,15 @@ import UserHome from "../pages/users/homes/Index.vue"
            meta: {
                layout: 'blank',
                user: false
+           }
+       },
+       {
+           path: '/user/bids',
+           name: 'UserBid',
+           component: UserBid,
+           meta: {
+               layout: 'user',
+               user: true
            }
        }
     ]

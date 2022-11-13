@@ -17,7 +17,6 @@ import InputText from "primevue/inputtext";
 import PanelMenu from 'primevue/panelmenu';
 import Card from 'primevue/card';
 import Breadcrumb from 'primevue/breadcrumb';
-import Menubar from 'primevue/menubar';
 import Dropdown from 'primevue/dropdown';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
@@ -31,7 +30,8 @@ import Password from 'primevue/password';
 import Checkbox from 'primevue/checkbox';
 import Image from 'primevue/image';
 import FileUpload from 'primevue/fileupload';
-
+import Menubar from 'primevue/menubar';
+import Carousel from 'primevue/carousel';
 
 import UserLayout from './layouts/User.vue'
 import BlankLayout from './layouts/Blank.vue'

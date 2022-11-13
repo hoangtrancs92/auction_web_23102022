@@ -43,7 +43,6 @@ export default {
             token === null || token === '' ? this.$router.push(`/admin/login`) : this.$router.push(`/admin/dashboard`)
         },
         async handleSubmit() {
-            console.log( this.editAdmin);
             const res = await this.loginAdmin(Object.assign({},  this.editAdmin))
             this.CHANGE_EDIT_ADMIN(this.editAdmin)
             if (res.data.status_code === 200){
