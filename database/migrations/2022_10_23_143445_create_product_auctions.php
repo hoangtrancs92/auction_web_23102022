@@ -13,16 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('auctions', function (Blueprint $table) {
+        Schema::create('product_auctions', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('time_start');
-            $table->dateTime('time_end');
-            $table->integer('price_start');
             $table->timestamps();
-            $table->unsignedBigInteger('id_admin');
+            $table->unsignedBigInteger('id_product');
+            $table->unsignedBigInteger('id_auction');
 
-            $table->foreign('id_admin')->references('id')->on('admins');
-
+            $table->foreign('id_product')->references('id')->on('products');
+            $table->foreign('id_auction')->references('id')->on('auctions');
         });
     }
 
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('auctions');
+        Schema::dropIfExists('product_auctions');
     }
 };

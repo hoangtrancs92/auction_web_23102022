@@ -7,14 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Auction extends Model
+class ProductAuction extends Model
 {
     use HasFactory, HasApiTokens, Notifiable;
 
     protected $fillable = [
-        'time_start',
-        'time_end',
-        'price_start',
-        'id_admin'
+        'id_product',
+        'id_auction'
     ];
 }

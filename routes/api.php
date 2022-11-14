@@ -26,7 +26,11 @@ Route::prefix('admin')->group(function () {
         Route::get('/shops',[\App\Http\Controllers\api\v1\admins\ShopController::class,'index'])->name('admin-shops-manager');
         Route::get('/products',[\App\Http\Controllers\api\v1\admins\ProductController::class,'index'])->name('admin-products-manager');
         Route::post('/product-created',[\App\Http\Controllers\api\v1\admins\ProductController::class,'store'])->name('admin-product-created');
+        Route::get('/auctions',[\App\Http\Controllers\api\v1\admins\AuctionController::class,'index'])->name('admin-auction-manager');
+        Route::post('/auction-created',[\App\Http\Controllers\api\v1\admins\AuctionController::class,'store'])->name('admin-auction-created');
+
     });
+
     Route::group(['middleware' => ['auth:sanctum', 'IsBoth']], function() {
         Route::get('/category-manager',[\App\Http\Controllers\api\v1\admins\CategoryManagerController::class,'index'])->name('admin-categories-manager');
     });
