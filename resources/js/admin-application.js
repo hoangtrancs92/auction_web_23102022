@@ -32,6 +32,7 @@ import InputNumber from 'primevue/inputnumber';
 import ConfirmDialog from 'primevue/confirmdialog';
 import FileUpload from 'primevue/fileupload';
 import TreeTable from 'primevue/treetable';
+import MultiSelect from 'primevue/multiselect';
 
 import StyleClass from 'primevue/styleclass';
 import Ripple from 'primevue/ripple';
@@ -71,6 +72,7 @@ app.component('ConfirmDialog', ConfirmDialog);
 app.component('InputNumber', InputNumber);
 app.component('FileUpload', FileUpload);
 app.component('TreeTable', TreeTable);
+app.component('MultiSelect', MultiSelect);
 
 app.directive('styleclass', StyleClass);
 app.directive('ripple', Ripple);

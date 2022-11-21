@@ -75,12 +75,10 @@ ul{
 .footer{
     background-color: #24262b;
     padding: 50px 0;
-    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     color: white;
-    /*text-align: center;*/
 }
 .footer-col{
     width: 25%;

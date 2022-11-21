@@ -10,9 +10,13 @@ use Laravel\Sanctum\HasApiTokens;
 class ProductAuction extends Model
 {
     use HasFactory, HasApiTokens, Notifiable;
-
     protected $fillable = [
         'id_product',
-        'id_auction'
+        'id_auction',
+        'time_start',
+        'time_end',
+        'status'
     ];
+
+
 }

@@ -15,6 +15,7 @@ class Auction extends Model
         'time_start',
         'time_end',
         'price_start',
-        'id_admin'
+        'id_admin',
+        'created_at'
     ];
 }

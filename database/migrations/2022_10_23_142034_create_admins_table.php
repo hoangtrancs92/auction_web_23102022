@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->string('phone')->unique()->nullable();
             $table->enum('sex',['Male','Female','LGBT'])->default('Male');
-            $table->date('birthday')->nullable();
+            $table->timestamp('birthday')->nullable();
             $table->text('address')->nullable();
             $table->string('image',255)->nullable();
             $table->integer('admin_type')->nullable();

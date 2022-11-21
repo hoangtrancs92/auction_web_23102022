@@ -4,6 +4,7 @@ import LoginModules from './modules/login.js'
 import CategoryModules from './modules/category.js'
 import ProductModules from './modules/product.js'
 import ShopModules from './modules/shop.js'
+import AuctionModules from "./modules/auction.js";
 
 const store = createStore({
   modules: {
@@ -11,7 +12,8 @@ const store = createStore({
       login: LoginModules,
       category: CategoryModules,
       product: ProductModules,
-      shop: ShopModules
+      shop: ShopModules,
+      auction: AuctionModules
   }
 })
 

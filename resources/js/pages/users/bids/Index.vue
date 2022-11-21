@@ -1,19 +1,24 @@
 <template>
     <div class="wrapper">
-        <h1>dashdhadsß</h1>
+        <ListProductAuction />
     </div>
 
 </template>
 
 <script>
+import ListProductAuction from "./ListProductAuction.vue";
 export default {
-    name: "Index.vue"
+    name: "Index.vue",
+    components: {
+        ListProductAuction
+    }
 }
 </script>
 
 <style scoped>
 .wrapper{
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
+    /*background-color: #70a1ff;*/
 }
 </style>

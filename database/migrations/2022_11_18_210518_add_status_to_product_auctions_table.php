@@ -13,14 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('histories', function (Blueprint $table) {
-            $table->id();
-            $table->timestamp('time');
-            $table->tinyInteger('status');
-            $table->timestamps();
-            $table->unsignedBigInteger('id_win_bidding');
-
-            $table->foreign('id_win_bidding')->references('id')->on('win_biddings');
+        Schema::table('product_auctions', function (Blueprint $table) {
+            $table->integer('status')->nullable();
         });
     }
 
@@ -31,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('histories');
+        Schema::table('product_auctions', function (Blueprint $table) {
+            $table->dropColumn('status');
+        });
     }
 };

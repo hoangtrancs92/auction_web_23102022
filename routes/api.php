@@ -28,6 +28,9 @@ Route::prefix('admin')->group(function () {
         Route::post('/product-created',[\App\Http\Controllers\api\v1\admins\ProductController::class,'store'])->name('admin-product-created');
         Route::get('/auctions',[\App\Http\Controllers\api\v1\admins\AuctionController::class,'index'])->name('admin-auction-manager');
         Route::post('/auction-created',[\App\Http\Controllers\api\v1\admins\AuctionController::class,'store'])->name('admin-auction-created');
+        Route::get('/product-auctions',[\App\Http\Controllers\api\v1\admins\ProductAuctionController::class,'index'])->name('admin-product-auction');
+        Route::get('/product-auctions/{id}',[\App\Http\Controllers\api\v1\admins\ProductAuctionController::class,'show'])->name('admin-product-auction-show');
+        Route::post('/product-auctions-created',[\App\Http\Controllers\api\v1\admins\ProductAuctionController::class,'store'])->name('admin-product-auction-created');
 
     });
 
@@ -41,7 +44,8 @@ Route::prefix('customer')->group(function () {
     Route::post('/login',[\App\Http\Controllers\api\v1\users\auth\UserAuthController::class,'login'])->name('customer-login');
     Route::post('/register',[\App\Http\Controllers\api\v1\users\auth\UserAuthController::class,'register'])->name('customer-register');
     Route::group(['middleware' => ['auth:sanctum']], function() {
-
+        Route::get('/product-auction-customer',[\App\Http\Controllers\api\v1\users\ProductAuctionController::class,'index'])->name('product-auction-customer');
+        Route::get('/product-detail/{id}',[\App\Http\Controllers\api\v1\users\ProductAuctionController::class,'show'])->name('product-detail-customer');
     });
 });
 
@@ -49,3 +53,5 @@ Route::prefix('shop')->group(function () {
     Route::post('/login',[\App\Http\Controllers\api\v1\admins\auth\AdminAuthController::class,'login'])->name('admin-login');
     Route::get('/user-manager',[\App\Http\Controllers\api\v1\admins\UserManagerController::class,'index'])->name('user-manager');
 });
+
+Route::get('/test',[\App\Http\Controllers\api\v1\admins\AuctionController::class,'test'])->name('test');

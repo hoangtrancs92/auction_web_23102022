@@ -14,11 +14,15 @@ export const URLS = {
     ADMIN_SHOPS_GET: () => `${getBaseUrl()}/admin/shops`,
     ADMIN_PRODUCTS_GET: () => `${getBaseUrl()}/admin/products`,
     ADMIN_PRODUCTS_CREATED: () => `${getBaseUrl()}/admin/product-created`,
+    ADMIN_AUCTIONS_SHOW: () => `${getBaseUrl()}/admin/auctions`,
+    ADMIN_AUCTIONS_CREATED: () => `${getBaseUrl()}/admin/auction-created`,
     // front
     ADMIN_LOGIN: () => `${getBaseUrl()}/admin/login`,
     AMIN_LOGOUT: () => `${getBaseUrl()}/admin/logout`,
     // customer
     CUSTOMER_LOGIN: () => `${getBaseUrl()}/customer/login`,
-    CUSTOMER_REGISTER: () => `${getBaseUrl()}/customer/register`
+    CUSTOMER_REGISTER: () => `${getBaseUrl()}/customer/register`,
+    CUSTOMER_PRODUCT_AUCTION: () => `${getBaseUrl()}/customer/product-auction-customer`,
+    CUSTOMER_PRODUCT_DETAIL: (id) => `${getBaseUrl()}/customer/product-detail/${id}`
 
 }

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('lastname',50)->nullable();
             $table->enum('sex',['Male','Female','LGBT'])->default('Male');
 //            $table->boolean('sex');
-            $table->date('birthday')->nullable();
+            $table->timestamp('birthday')->nullable();
             $table->string('address')->nullable();
             $table->string('image')->nullable();
             $table->string('phone')->nullable();

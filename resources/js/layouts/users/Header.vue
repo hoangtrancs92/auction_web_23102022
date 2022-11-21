@@ -8,7 +8,7 @@
             <ul class="navigation">
                 <li><router-link to="/user/home">Trang chủ</router-link></li>
                 <li><router-link to="/user/bids">Đấu giá</router-link></li>
-                <li><router-link to="">Giỏ hàng</router-link></li>
+                <li><router-link to="/user/product">Giỏ hàng</router-link></li>
                 <li><router-link to="">Đơn hàng</router-link></li>
                 <li><router-link to="">Liên hệ</router-link></li>
             </ul>
@@ -51,6 +51,9 @@ export default {
     box-sizing: border-box;
 }
 header{
+    position: fixed;
+    z-index: 1000;
+    top: 0;
     width: 100%;
     height: 80px;
     background: #ffffff;

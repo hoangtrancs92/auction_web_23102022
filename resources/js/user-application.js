@@ -32,6 +32,7 @@ import Image from 'primevue/image';
 import FileUpload from 'primevue/fileupload';
 import Menubar from 'primevue/menubar';
 import Carousel from 'primevue/carousel';
+import InputNumber from 'primevue/inputnumber';
 
 import UserLayout from './layouts/User.vue'
 import BlankLayout from './layouts/Blank.vue'
@@ -62,6 +63,7 @@ app.component('Row', Row);
 app.component('Checkbox', Checkbox);
 app.component('Image', Image);
 app.component('FileUpload', FileUpload);
+app.component('InputNumber', InputNumber);
 
 
 
