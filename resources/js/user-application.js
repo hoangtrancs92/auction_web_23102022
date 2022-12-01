@@ -11,6 +11,8 @@ import 'primeicons/primeicons.css'
 import 'prismjs/themes/prism-coy.css';
 import 'primeflex/primeflex.css';
 import 'primevue/resources/primevue.css'
+import ToastService from 'primevue/toastservice';
+
 
 import Button from "primevue/button";
 import InputText from "primevue/inputtext";
@@ -33,11 +35,12 @@ import FileUpload from 'primevue/fileupload';
 import Menubar from 'primevue/menubar';
 import Carousel from 'primevue/carousel';
 import InputNumber from 'primevue/inputnumber';
+import Toast from 'primevue/toast';
 
 import UserLayout from './layouts/User.vue'
 import BlankLayout from './layouts/Blank.vue'
 
-const app = createApp(UserApp).use(userRouter).use(store).use(PrimeVue);
+const app = createApp(UserApp).use(userRouter).use(store).use(PrimeVue).use(ToastService);
 
 app.component('user-layout', UserLayout)
 app.component('blank-layout', BlankLayout)
@@ -64,6 +67,7 @@ app.component('Checkbox', Checkbox);
 app.component('Image', Image);
 app.component('FileUpload', FileUpload);
 app.component('InputNumber', InputNumber);
+app.component('Toast', Toast);
 
 
 

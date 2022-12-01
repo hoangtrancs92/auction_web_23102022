@@ -18,9 +18,7 @@ use function response;
 class UserManagerController extends AdminAuthController
 {
     public function index(){
-//        $users = DB::table('users')->get();
         $users =  User::orderBy("created_at", "desc")->get();
-//        $users = User::all()->sortByDesc("created_at");
         return response()->json($users);
     }
     public function store(Request $request) {

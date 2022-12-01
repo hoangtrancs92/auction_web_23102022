@@ -17,6 +17,13 @@ class ProductAuction extends Model
         'time_end',
         'status'
     ];
-
+    public function bids()
+    {
+        return $this->belongsTo(Bid::class, 'id_product_auction');
+    }
+    public function products()
+    {
+        return $this->belongsTo(Product::class, 'id_product');
+    }
 
 }

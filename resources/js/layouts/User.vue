@@ -8,6 +8,7 @@
     <div>
         <Footer />
     </div>
+    <Toast position="top-center" />
 </template>
 
 <script>

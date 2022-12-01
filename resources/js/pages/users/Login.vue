@@ -12,7 +12,7 @@
                         <InputText id="email" v-model="editCustomer.email" type="text" class="w-full mb-3" placeholder="Email" style="padding:1rem;"  />
 
                         <label for="password" class="block text-900 font-medium text-xl mb-2">Mật khẩu</label>
-                        <Password id="password" v-model="editCustomer.password" placeholder="Mật khẩu" :toggleMask="true" class="w-full mb-3" inputClass="w-full" inputStyle="padding:1rem" ></Password>
+                        <Password id="password" :feedback="false" v-model="editCustomer.password" placeholder="Mật khẩu" :toggleMask="true" class="w-full mb-3" inputClass="w-full" inputStyle="padding:1rem" ></Password>
 
                         <div class="flex align-items-center justify-content-between mb-5">
 <!--                            <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(&#45;&#45;primary-color)">Quên mật khẩu ?</a>-->

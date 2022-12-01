@@ -8,7 +8,7 @@
             <ul class="navigation">
                 <li><router-link to="/user/home">Trang chủ</router-link></li>
                 <li><router-link to="/user/bids">Đấu giá</router-link></li>
-                <li><router-link to="/user/product">Giỏ hàng</router-link></li>
+                <li><router-link to="/user/cart">Giỏ hàng</router-link></li>
                 <li><router-link to="">Đơn hàng</router-link></li>
                 <li><router-link to="">Liên hệ</router-link></li>
             </ul>
@@ -18,13 +18,11 @@
                 <span class="pi pi-bars menuToggle"></span>
             </div>
             <div>
-                <span class="pi pi-cart-plus cursor-pointer m-4 size" ></span>
+                <router-link to="/user/cart" > <span class="pi pi-cart-plus cursor-pointer m-4 size" style="color:black" ></span> </router-link>
                 <span class="pi pi-bell cursor-pointer m-4 size" ></span>
                 <span class="pi pi-sign-out cursor-pointer m-4 size" @click="logout()"></span>
             </div>
         </div>
-
-
     </header>
 </template>
 <script >
@@ -38,7 +36,7 @@ export default {
             }
         },
         logoImage() {
-            return '../images/logo-dark.svg';
+            return '/images/logo-dark.svg';
         }
     }
 }

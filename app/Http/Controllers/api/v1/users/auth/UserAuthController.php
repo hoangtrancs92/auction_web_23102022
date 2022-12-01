@@ -28,7 +28,7 @@ class UserAuthController extends Controller
             $credentials = request(['email', 'password']);
             $admin = user::where('email', $request->email)->first();
             if (!Hash::check($request->password, $admin->password, [])) {
-                throw new \Exception('Error in Login loi dell gi vay');
+                throw new \Exception('Error');
             }
             $tokenResult = $admin->createToken('authToken', ['server:update'])->plainTextToken;
             return response()->json([

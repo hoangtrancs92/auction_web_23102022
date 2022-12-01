@@ -2,7 +2,6 @@
     <div class="wrapper">
         <ListProductAuction />
     </div>
-
 </template>
 
 <script>
@@ -11,6 +10,10 @@ export default {
     name: "Index.vue",
     components: {
         ListProductAuction
+    },
+    data () {
+    },
+    methods : {
     }
 }
 </script>

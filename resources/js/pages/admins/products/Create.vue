@@ -16,7 +16,7 @@
                 <span class="p-inputgroup-addon">
                     <i class="pi pi-money-bill"></i>
                 </span>
-                    <InputNumber v-model="product.price" showButtons mode="currency" currency="VND" :step="1" :min="1000" />
+                    <InputNumber v-model="product.price" showButtons currency="VND" :step="1" :min="1000" />
                 </div>
             </div>
             <div class="col-12 md:col-6">

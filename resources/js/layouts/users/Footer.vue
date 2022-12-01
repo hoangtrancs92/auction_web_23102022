@@ -79,6 +79,8 @@ ul{
     bottom: 0;
     width: 100%;
     color: white;
+    /*position: fixed;*/
+
 }
 .footer-col{
     width: 25%;

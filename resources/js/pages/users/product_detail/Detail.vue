@@ -1,87 +1,94 @@
 <template>
-    <div v-for="p in product_auction" style="margin-top: 40px">
+    <div style="margin-top: 40px">
         <div class = "main-wrapper">
             <div class = "container">
                 <div class = "product-div">
                     <div class="product-info">
                         <div class = "product-div-left">
                             <div class = "img-container">
-                                <img :src="`/images/products/${p.image_product}`" class="product-image" />
-                            </div>
-                            <div class = "hover-container">
-                                <div><img src = "images/w2.png"></div>
-                                <div><img src = "images/w2.png"></div>
-                                <div><img src = "images/w3.png"></div>
-                                <div><img src = "images/w4.png"></div>
-                                <div><img src = "images/w5.png"></div>
+                                <img :src="`/images/products/${product_auction.image_product}`" class="product-image" />
                             </div>
                         </div>
                         <div class = "product-div-right">
-                            <span class = "product-name">{{p.name_product}}</span>
-                            <span class = "product-price">Giá cao nhất:  {{p.price}} đ</span>
-                            <p class = "product-description">Sản phẩm {{p.name_product}}</p>
-                            <CountDown :date="new Date(p.time_end_product)"  @onFinish="finish(p.id_auction)" style="margin-top:30px;"/>
+                            <span class = "product-name">{{product_auction.name_product}}</span>
+<!--                            <span class = "product-price" >Giá cao nhất: {{bids}}  đ</span>-->
+                            <p class = "product-description">Giá khởi điểm: {{ product_auction.price}} đ</p>
+                            <p class = "product-description">Sản phẩm {{product_auction.name_product}}</p>
+                            <CountDown :date="new Date(product_auction.time_end_product)"  @onFinish="finish(product_auction.id_auction)" style="margin-top:30px;"/>
                             <div class = "btn-groups">
-                                <InputNumber v-model="value2" currency="VND" placeholder="VND"></InputNumber>
+                                <InputNumber v-model="bid.price" currency="VND" placeholder="VND"></InputNumber>
                             </div>
                             <div class = "btn-groups">
-                                <button type = "button" class = "buy-now-btn"><i class = "fas fa-wallet"></i>Đặt giá</button>
+                                <button class = "buy-now-btn" @click="onSubmit()"><i class = "fas fa-wallet" ></i>Đặt giá</button>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                     <div  class="flex product-table">
                         <BiddingTable class="table" />
                     </div>
                 </div>
-
+                <WinningBid />
             </div>
         </div>
     </div>
+
 </template>
 
 <script>
 import CountDown from "../bids/CountDown.vue";
 import BiddingTable from "./BiddingTable.vue";
+import WinningBid from "./WinningBid.vue";
 import {mapActions, mapGetters, mapMutations} from "vuex";
+var pusher = new Pusher('20331727049a5850fa61', {
+    cluster: 'ap1'
+});
 
 export default {
     name: "Detail",
     components: {
         CountDown,
-        BiddingTable
+        BiddingTable,
+        WinningBid
     },
 
     computed: {
         ...mapGetters({
             product_auction: 'productAuction/product_auction',
-        })
+            bid: 'bidModules/bid',
+            bids: 'bidModules/bids',
+        }),
     },
     created() {
-        this.fetchProductDetail(this.$router.currentRoute._value.params.id)
+        this.fetchProductDetail(this.$route.params.id)
+        this.SET_BID({})
+
+
     },
     methods: {
-        ...mapActions('productAuction', ['fetchProductDetail']),
+        ...mapActions('productAuction', ['fetchProductDetail', 'fetchProductAuction']),
+        ...mapActions('bidModules',['addBid','fetchBids','realtBidding']),
         ...mapMutations('productAuction', ['SET_PRODUCT_AUCTION']),
+        ...mapMutations('bidModules', ['SET_BID','SET_BIDS','SET_BID_ID_PRODUCT_AUCTION', 'SET_PRICE_START_AUCTION', 'SET_SHOW_DIALOG']),
         finish() {
+            this.SET_SHOW_DIALOG(true)
+            this.fetchProductAuction()
             console.log('finish');
-        }
-    }
-}
-const allHoverImages = document.querySelectorAll('.hover-container div img');
-const imgContainer = document.querySelector('.img-container');
-allHoverImages.forEach((image) => {
-    image.addEventListener('mouseover', () =>{
-        imgContainer.querySelector('img').src = image.src;
-        resetActiveImg();
-        image.parentElement.classList.add('active');
-    });
-});
 
-function resetActiveImg(){
-    allHoverImages.forEach((img) => {
-        img.parentElement.classList.remove('active');
-    });
+        },
+         async onSubmit() {
+            this.SET_BID_ID_PRODUCT_AUCTION(this.$route.params.id)  // set id_product_auction vào request
+             const res = await this.addBid(this.bid)
+                 if (res.status === 200) {
+                     this.$toast.add({severity:'success', summary: 'Thành công', detail: res.data.message, life: 3000});
+                     console.log(this.$route.params.id)
+                     this.fetchBids(this.$route.params.id)
+                 }
+            else {
+                this.$toast.add({severity:'error', summary: 'Thất bại', detail: res.response.data.message, life: 3000});
+            }
+        },
+    }
 }
 </script>
 
@@ -256,9 +263,27 @@ img{
 }
 
 @media screen and (max-width: 400px){
-    .btn-groups button{
-        width: 100%;
-        margin-bottom: 10px;
+    .container{
+        min-width: 400px;
+
     }
+    .product-info{
+        flex-direction: column;
+    }
+    .product-div-left{
+        width: 100%;
+    }
+    .product-div-right{
+        width: 100%;
+    }
+
+    .btn-groups{
+        margin-top: 22px;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .btn-groups button{
+        width: 90%;
+    }
+
 }
 </style>

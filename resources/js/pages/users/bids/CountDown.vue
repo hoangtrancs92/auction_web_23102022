@@ -1,16 +1,16 @@
 <template>
     <div class="countdown">
         <div v-if="days" class="countdown__block">
-            <div class="countdown__digit">{{ days | twoDigits }}</div>
+            <div class="countdown__digit">{{ days }}</div>
         </div>
         <div class="countdown__block">
-            <div class="countdown__digit">{{ hours | twoDigits }}</div>
+            <div class="countdown__digit">{{ hours }}</div>
         </div>
         <div class="countdown__block">
-            <div class="countdown__digit">{{ minutes | twoDigits }}</div>
+            <div class="countdown__digit">{{ minutes }}</div>
         </div>
         <div class="countdown__block">
-            <div class="countdown__digit">{{ seconds | twoDigits }}</div>
+            <div class="countdown__digit">{{ seconds }}</div>
         </div>
     </div>
 </template>
@@ -28,7 +28,6 @@ export default {
         }
     },
     created() {
-        console.log(this.date)
         const _self = this
         window.setInterval(() => {
             this.now = Math.trunc((new Date()).getTime() / 1000)
@@ -37,6 +36,11 @@ export default {
                 _self.$emit('onFinish')
             }
         }, 1000)
+    },
+    watch: {
+      date(newValue) {
+          this.event = newValue
+      }
     },
     computed: {
 
@@ -63,14 +67,6 @@ export default {
             return Math.trunc(this.secondCount / 60 / 60 / 24)
         }
     },
-    filters: {
-        twoDigits (value) {
-            if (value.toString().length <= 1) {
-                return '0' + value.toString()
-            }
-            return value.toString()
-        }
-    }
 }
 </script>
 <style lang="scss">

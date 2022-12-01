@@ -33,7 +33,6 @@ Route::prefix('admin')->group(function () {
         Route::post('/product-auctions-created',[\App\Http\Controllers\api\v1\admins\ProductAuctionController::class,'store'])->name('admin-product-auction-created');
 
     });
-
     Route::group(['middleware' => ['auth:sanctum', 'IsBoth']], function() {
         Route::get('/category-manager',[\App\Http\Controllers\api\v1\admins\CategoryManagerController::class,'index'])->name('admin-categories-manager');
     });
@@ -45,7 +44,11 @@ Route::prefix('customer')->group(function () {
     Route::post('/register',[\App\Http\Controllers\api\v1\users\auth\UserAuthController::class,'register'])->name('customer-register');
     Route::group(['middleware' => ['auth:sanctum']], function() {
         Route::get('/product-auction-customer',[\App\Http\Controllers\api\v1\users\ProductAuctionController::class,'index'])->name('product-auction-customer');
+        Route::post('/product-auction-customer-expired/{id}',[\App\Http\Controllers\api\v1\users\ProductAuctionController::class,'updateStatus'])->name('product-auction-customer-expired');
         Route::get('/product-detail/{id}',[\App\Http\Controllers\api\v1\users\ProductAuctionController::class,'show'])->name('product-detail-customer');
+        Route::get('/product-detail/bids/{id}',[\App\Http\Controllers\api\v1\users\BidController::class,'index'])->name('product-detail-list-bid');
+        Route::post('/product-detail/bids/{id}',[\App\Http\Controllers\api\v1\users\BidController::class,'store'])->name('product-detail-customer-bid');
+        Route::post('/product-detail/win-bidding',[\App\Http\Controllers\api\v1\users\WinBiddingController::class,'store'])->name('product-detail-win-bidding');
     });
 });
 
@@ -53,5 +56,6 @@ Route::prefix('shop')->group(function () {
     Route::post('/login',[\App\Http\Controllers\api\v1\admins\auth\AdminAuthController::class,'login'])->name('admin-login');
     Route::get('/user-manager',[\App\Http\Controllers\api\v1\admins\UserManagerController::class,'index'])->name('user-manager');
 });
+
 
 Route::get('/test',[\App\Http\Controllers\api\v1\admins\AuctionController::class,'test'])->name('test');

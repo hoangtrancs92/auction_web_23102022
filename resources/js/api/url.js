@@ -23,6 +23,9 @@ export const URLS = {
     CUSTOMER_LOGIN: () => `${getBaseUrl()}/customer/login`,
     CUSTOMER_REGISTER: () => `${getBaseUrl()}/customer/register`,
     CUSTOMER_PRODUCT_AUCTION: () => `${getBaseUrl()}/customer/product-auction-customer`,
-    CUSTOMER_PRODUCT_DETAIL: (id) => `${getBaseUrl()}/customer/product-detail/${id}`
+    CUSTOMER_PRODUCT_AUCTION_EXPIRED: (id) => `${getBaseUrl()}/customer/product-auction-customer-expired/${id}`,
+    CUSTOMER_PRODUCT_DETAIL: (id) => `${getBaseUrl()}/customer/product-detail/${id}`,
+    CUSTOMER_PRODUCT_DETAIL_BIDDING: (id) => `${getBaseUrl()}/customer/product-detail/bids/${id}`,
+    CUSTOMER_PRODUCT_LIST_BIDDING: (id) => `${getBaseUrl()}/customer/product-detail/bids/${id}`
 
 }

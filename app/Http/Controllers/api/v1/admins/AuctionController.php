@@ -4,6 +4,8 @@ namespace App\Http\Controllers\api\v1\admins;
 
 use App\Enums\AdminRole;
 use App\Enums\StatusRole;
+use App\Events\ProductAuctionRealTime;
+use App\Events\TimeCountDown;
 use App\Http\Controllers\Controller;
 use App\Models\admin;
 use App\Models\Auction;
@@ -27,7 +29,7 @@ class AuctionController extends Controller
         foreach ($auction as $au) {
             $value = $au['id'];
             $product = DB::table('product_auctions as pa')
-                ->select('p.id as id','p.name as name','p.price as price','p.image as image','ct.name as category_name','pa.time_start as time_start_product', 'pa.time_start as time_end_product')
+                ->select('p.id as id','p.name as name','p.price as price','p.image as image','ct.name as category_name','pa.time_start as time_start_product', 'pa.time_end as time_end_product')
                 ->join('products as p','pa.id_product','p.id')
                 ->join('categories as ct','p.id_category','ct.id')
                 ->join('auctions as a','pa.id_auction','a.id')
@@ -39,16 +41,13 @@ class AuctionController extends Controller
 
     public function store(Request $request)
     {
+        $list = [];
         if(Auth::user()->admin_type === AdminRole::Admin) {
             $time_start = Carbon::parse($request->time_start_auction)  ;
             $time_end = Carbon::parse($request->time_end_auction) ;
             $date_now = \Illuminate\Support\Carbon::now('Asia/Ho_Chi_Minh');
-            if($request->product === null) {
+            if($request->product === null)
                 return response()->json('Vui lòng chọn sản phẩm',500);
-            }
-            if($time_start->gt($date_now) === false )
-                return response()->json('Vui lòng chọn thời gian bắt đầu không nhỏ hơn ngày hiện tại',500);
-
             try {
                 if(Carbon::parse($time_end)->gt(Carbon::parse($time_start)) === true) {
                     $auction = new Auction([
@@ -62,20 +61,27 @@ class AuctionController extends Controller
                     foreach ($products as $p) {
                         $time_start = Carbon::parse($p['time_start']) ;
                         $time_end = Carbon::parse($p['time_end']);
-                        $status = StatusRole::SAP_DIEN_RA;
-                        if($date_now >= $time_start && $date_now <= $time_end)
-                            $status = StatusRole::DANG_DIEN_RA;
-                        elseif ($date_now > $time_end )
-                            $status = StatusRole::HET_DIEN_RA;
-                        $product_auction = new ProductAuction([
-                            'id_product' => $p['id']  ,
-                            'id_auction' => $auction->id,
-                            'time_start' => $time_start,
-                            'time_end' => $time_end,
-                            'status' => $status
-                        ]);
-                        $product_auction->save();
+                        if($time_end->gt(Carbon::parse($request->time_end_auction)) === true || $time_start->lt(Carbon::parse($request->time_start_auction)) === true ){
+                            return response()->json('Ngày phải nằm trong khoảng của phiên lớn', 500);
+                        }
+                        else{
+                            $status = StatusRole::SAP_DIEN_RA;
+                            if($date_now >= $time_start && $date_now <= $time_end)
+                                $status = StatusRole::DANG_DIEN_RA;
+                            elseif ($date_now > $time_end )
+                                $status = StatusRole::HET_DIEN_RA;
+                            $product_auction = new ProductAuction([
+                                'id_product' => $p['id']  ,
+                                'id_auction' => $auction->id,
+                                'time_start' => $time_start,
+                                'time_end' => $time_end,
+                                'status' => $status
+                            ]);
+                            $list[] = $product_auction;
+                            $product_auction->save();
+                        }
                     }
+                    event(new ProductAuctionRealTime($list));
                     return response()->json('Tạo phiên thành công', 201);
                 }
                 if($time_end->gt($time_start) === false) {
@@ -94,40 +100,9 @@ class AuctionController extends Controller
 
     public function test()
     {
-        return response()->json(\Illuminate\Support\Carbon::now('Asia/Ho_Chi_Minh'));
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Auction  $auction
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Auction $auction)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Auction  $auction
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Auction $auction)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Auction  $auction
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Auction $auction)
-    {
-        //
-    }
 }

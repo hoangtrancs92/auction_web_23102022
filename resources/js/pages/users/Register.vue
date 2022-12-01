@@ -79,9 +79,6 @@
                         <small v-if="(v$.password.$invalid && submitted) || v$.password.$pending.$response" class="p-error">{{v$.password.required.$message.replace('Value', 'Password')}}</small>
                     </div>
                     <div class="field">
-                        <FileUpload mode="basic" v-model="customer.image" name="demo[]" url="./upload" />
-                    </div>
-                    <div class="field">
                         <router-link to="/user/login" class="font-medium no-underline ml-2 text-right cursor-pointer">Đã có tài khoản ?</router-link>
                         <Button type="submit" label="Tạo tài khoản" class="mt-2" @click="onSubmit()" />
                     </div>

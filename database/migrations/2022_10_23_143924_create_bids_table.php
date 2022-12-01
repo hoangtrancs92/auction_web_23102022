@@ -15,9 +15,8 @@ return new class extends Migration {
         Schema::create('bids', function (Blueprint $table) {
             $table->id();
             $table->integer('price');
-            $table->timestamp('date');
+            $table->timestamp('date')->nullable();
             $table->unsignedBigInteger('id_user');
-            $table->unsignedBigInteger('id_auction');
             $table->unsignedBigInteger('id_product_auction');
             $table->timestamps();
 

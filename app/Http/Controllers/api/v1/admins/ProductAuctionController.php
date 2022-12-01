@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\api\v1\admins;
 
+use App\Enums\StatusRole;
 use App\Http\Controllers\Controller;
 use App\Models\ProductAuction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use function response;
@@ -52,10 +54,6 @@ class ProductAuctionController extends Controller
             ->where('pa.id_auction',$id)->get();
         return response()->json($products_of_auction);
     }
-    public function update(Request $request) {
-        return response()->json($request);
-    }
-
 
     /**
      * Remove the specified resource from storage.

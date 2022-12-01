@@ -20,7 +20,7 @@
             <Column field="name_cate" header="Phân loại"></Column>
             <Column field="price" header="Giá sàn">
                 <template #body="slotProps">
-                    {{slotProps.data.price}} đ
+                    {{ formatCurrency(slotProps.data.price,'đ')}}
                 </template>
             </Column>
             <Column field="" header="Ảnh">
@@ -46,6 +46,7 @@
 
 <script>
 import {mapActions, mapGetters, mapMutations} from "vuex";
+import {formatCurrency} from "../../../utils/format";
 
 export default {
     name: "ListCategory",
@@ -53,7 +54,6 @@ export default {
       ...mapGetters({
           list_category: 'category/categories',
           list_product: 'product/products'
-
       })
     },
     methods: {
@@ -84,7 +84,8 @@ export default {
                     this.fetchCategories()
                 }
             });
-        }
+        },
+        formatCurrency
     }
 }
 </script>

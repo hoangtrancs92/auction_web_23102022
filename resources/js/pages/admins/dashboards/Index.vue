@@ -1,5 +1,5 @@
 <template>
-    <span>hellosssssssssssssssssss</span>
+    <span>hello</span>
 
 </template>
 

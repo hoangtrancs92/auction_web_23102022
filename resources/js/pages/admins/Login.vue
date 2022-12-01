@@ -1,6 +1,5 @@
 <template>
 <div id="right"></div>
-
             <div class="surface-card p-4 shadow-2 border-round w-full lg:w-4 oks">
                 <div class="text-center mb-5 " style="width: 100%">
                     <div class="text-900 text-3xl font-medium mb-3" style="padding-top:10px">Admin</div>
