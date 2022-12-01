@@ -1,20 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api\v1\admins;
 
-use App\Models\Product;
+use App\Http\Controllers\Controller;
+use App\Models\admin;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ShopController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        $shops = admin::query()->where('admin_type', 1)->get(['id', 'name']);
+        return response()->json($shops);
     }
 
     /**
@@ -41,10 +39,10 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Shop  $shop
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Shop $shop)
     {
         //
     }
@@ -52,10 +50,10 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Shop  $shop
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Shop $shop)
     {
         //
     }
@@ -64,10 +62,10 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Shop  $shop
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Shop $shop)
     {
         //
     }
@@ -75,10 +73,10 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param  \App\Models\Shop  $shop
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy(Shop $shop)
     {
         //
     }

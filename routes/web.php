@@ -28,3 +28,6 @@ Route::prefix('user')->group(function () {
         return view('user');
     })->where('any', '.*');
 });
+Route::get('', function () {
+    return view('user');
+})->where('any', '.*');

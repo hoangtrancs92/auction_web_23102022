@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('histories', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('time');
+            $table->timestamp('time');
             $table->tinyInteger('status');
             $table->timestamps();
             $table->unsignedBigInteger('id_win_bidding');

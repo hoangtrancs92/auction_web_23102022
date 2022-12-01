@@ -15,15 +15,14 @@ return new class extends Migration
     {
         Schema::create('auctions', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('time_start');
-            $table->dateTime('time_end');
+            $table->timestamp('time_start');
+            $table->timestamp('time_end');
             $table->integer('price_start');
             $table->timestamps();
             $table->unsignedBigInteger('id_admin');
-            $table->unsignedBigInteger('id_product');
 
             $table->foreign('id_admin')->references('id')->on('admins');
-            $table->foreign('id_product')->references('id')->on('products');
+
         });
     }
 

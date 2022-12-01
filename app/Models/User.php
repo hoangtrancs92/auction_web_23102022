@@ -28,7 +28,6 @@ class User extends Authenticatable
         'birthday',
         'phone',
         'image',
-        'created_by'
     ];
 
     /**
@@ -53,5 +52,8 @@ class User extends Authenticatable
     public function getFullNameAttribute()
     {
         return "{$this['firstname']} {$this['lastname']}";
+    }
+    public function bids() {
+        return $this->hasMany(Bid::class);
     }
 }

@@ -71,7 +71,6 @@ export default {
         });
         },
         showEditCustomer(data){
-            console.log(data)
             this.CHANGE_STATUS_IS_EDIT(true)
             this.CHANGE_STATUS_DIALOG(true)
             this.SET_CUSTOMER(data)

@@ -28,8 +28,11 @@ import RadioButton from 'primevue/radiobutton';
 import Calendar from 'primevue/calendar';
 import Checkbox from 'primevue/checkbox';
 import Toast from 'primevue/toast';
+import InputNumber from 'primevue/inputnumber';
 import ConfirmDialog from 'primevue/confirmdialog';
-
+import FileUpload from 'primevue/fileupload';
+import TreeTable from 'primevue/treetable';
+import MultiSelect from 'primevue/multiselect';
 
 import StyleClass from 'primevue/styleclass';
 import Ripple from 'primevue/ripple';
@@ -66,6 +69,10 @@ app.component('Calendar', Calendar);
 app.component('Checkbox', Checkbox);
 app.component('Toast', Toast);
 app.component('ConfirmDialog', ConfirmDialog);
+app.component('InputNumber', InputNumber);
+app.component('FileUpload', FileUpload);
+app.component('TreeTable', TreeTable);
+app.component('MultiSelect', MultiSelect);
 
 app.directive('styleclass', StyleClass);
 app.directive('ripple', Ripple);

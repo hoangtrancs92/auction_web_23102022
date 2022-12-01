@@ -13,7 +13,6 @@ export default {
     mutations: {
         CHANGE_EDIT_ADMIN(state, payload){
             state.edit_admin = payload
-            console.log(state.edit_admin)
         },
     },
     actions: {

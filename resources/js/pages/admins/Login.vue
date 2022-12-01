@@ -1,6 +1,5 @@
 <template>
 <div id="right"></div>
-
             <div class="surface-card p-4 shadow-2 border-round w-full lg:w-4 oks">
                 <div class="text-center mb-5 " style="width: 100%">
                     <div class="text-900 text-3xl font-medium mb-3" style="padding-top:10px">Admin</div>
@@ -43,7 +42,6 @@ export default {
             token === null || token === '' ? this.$router.push(`/admin/login`) : this.$router.push(`/admin/dashboard`)
         },
         async handleSubmit() {
-            console.log( this.editAdmin);
             const res = await this.loginAdmin(Object.assign({},  this.editAdmin))
             this.CHANGE_EDIT_ADMIN(this.editAdmin)
             if (res.data.status_code === 200){

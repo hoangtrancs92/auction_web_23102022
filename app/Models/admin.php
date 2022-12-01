@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\AdminRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -14,5 +15,9 @@ class admin extends Model
     protected $fillable = [
         'email',
         'password',
+        'admin_type'
     ];
+    public function is_admin(){
+        return $this->admin_type === AdminRole::Admin;
+    }
 }

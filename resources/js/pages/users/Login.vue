@@ -12,7 +12,7 @@
                         <InputText id="email" v-model="editCustomer.email" type="text" class="w-full mb-3" placeholder="Email" style="padding:1rem;"  />
 
                         <label for="password" class="block text-900 font-medium text-xl mb-2">Mật khẩu</label>
-                        <Password id="password" v-model="editCustomer.password" placeholder="Mật khẩu" :toggleMask="true" class="w-full mb-3" inputClass="w-full" inputStyle="padding:1rem" ></Password>
+                        <Password id="password" :feedback="false" v-model="editCustomer.password" placeholder="Mật khẩu" :toggleMask="true" class="w-full mb-3" inputClass="w-full" inputStyle="padding:1rem" ></Password>
 
                         <div class="flex align-items-center justify-content-between mb-5">
 <!--                            <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(&#45;&#45;primary-color)">Quên mật khẩu ?</a>-->
@@ -51,9 +51,7 @@ export default {
         },
         async handleSubmit() {
             const res = await this.loginCustomer(Object.assign({},  this.editCustomer))
-            console.log(res)
             if (res.data.status_code === 200){
-                console.log(res.data)
                 localStorage.setItem('customer_token', res.data.access_token)
                 this.$router.push('/user/home')
             }

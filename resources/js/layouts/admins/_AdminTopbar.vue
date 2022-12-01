@@ -21,7 +21,6 @@
 
 <script>
 import {mapActions, mapGetters} from "vuex";
-import axios from "axios";
 
 export default {
     name: "_AdminTopbar",
@@ -39,7 +38,6 @@ export default {
     // }),
     ...mapActions('login',['logoutAdmin']),
     created() {
-      // console.log(this.edit_admin);
     },
     methods: {
         logout() {

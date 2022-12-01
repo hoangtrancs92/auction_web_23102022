@@ -15,13 +15,13 @@ return new class extends Migration {
         Schema::create('bids', function (Blueprint $table) {
             $table->id();
             $table->integer('price');
-            $table->dateTime('date');
+            $table->timestamp('date')->nullable();
             $table->unsignedBigInteger('id_user');
-            $table->unsignedBigInteger('id_auction');
+            $table->unsignedBigInteger('id_product_auction');
             $table->timestamps();
 
             $table->foreign('id_user')->references('id')->on('users');
-            $table->foreign('id_auction')->references('id')->on('auctions');
+            $table->foreign('id_product_auction')->references('id')->on('product_auctions');
         });
     }
 
