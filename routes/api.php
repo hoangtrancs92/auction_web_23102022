@@ -49,6 +49,7 @@ Route::prefix('customer')->group(function () {
         Route::get('/product-detail/bids/{id}',[\App\Http\Controllers\api\v1\users\BidController::class,'index'])->name('product-detail-list-bid');
         Route::post('/product-detail/bids/{id}',[\App\Http\Controllers\api\v1\users\BidController::class,'store'])->name('product-detail-customer-bid');
         Route::post('/product-detail/win-bidding',[\App\Http\Controllers\api\v1\users\WinBiddingController::class,'store'])->name('product-detail-win-bidding');
+        Route::get('/product-detail/cart',[\App\Http\Controllers\api\v1\users\WinBiddingController::class,'index'])->name('product-detail-cart');
     });
 });
 

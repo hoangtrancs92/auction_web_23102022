@@ -15,6 +15,7 @@ class WinBidding extends Model
         'delivery_status',
         'id_bid',
         'id_payment',
-        'id_user'
+        'id_user',
+        'id_transport_admin'
     ];
 }

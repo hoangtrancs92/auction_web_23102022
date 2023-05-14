@@ -65,6 +65,7 @@ class AuctionController extends Controller
                             return response()->json('Ngày phải nằm trong khoảng của phiên lớn', 500);
                         }
                         else{
+
                             $status = StatusRole::SAP_DIEN_RA;
                             if($date_now >= $time_start && $date_now <= $time_end)
                                 $status = StatusRole::DANG_DIEN_RA;
@@ -78,8 +79,10 @@ class AuctionController extends Controller
                                 'status' => $status
                             ]);
                             $list[] = $product_auction;
+
                             $product_auction->save();
                         }
+
                     }
                     event(new ProductAuctionRealTime($list));
                     return response()->json('Tạo phiên thành công', 201);

@@ -62,17 +62,16 @@ export default {
     created() {
         this.fetchProductDetail(this.$route.params.id)
         this.SET_BID({})
-
-
     },
     methods: {
         ...mapActions('productAuction', ['fetchProductDetail', 'fetchProductAuction']),
-        ...mapActions('bidModules',['addBid','fetchBids','realtBidding']),
+        ...mapActions('bidModules',['addBid','fetchBids','addWinner']),
         ...mapMutations('productAuction', ['SET_PRODUCT_AUCTION']),
         ...mapMutations('bidModules', ['SET_BID','SET_BIDS','SET_BID_ID_PRODUCT_AUCTION', 'SET_PRICE_START_AUCTION', 'SET_SHOW_DIALOG']),
         finish() {
             this.SET_SHOW_DIALOG(true)
             this.fetchProductAuction()
+            this.addWinner(this.bids[0])
             console.log('finish');
 
         },

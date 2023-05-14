@@ -1,6 +1,5 @@
 <template>
     <div class="card">
-{{list_bid}}
         <DataTable :value="list_bid" :scrollable="true" scrollHeight="400px" :loading="loading" stripedRows>
             <Column field="user.fullname" header="Tên" style="min-width:200px"></Column>
 <!--            <Column field="user.email" header="Email" style="min-width:300px"></Column>-->
