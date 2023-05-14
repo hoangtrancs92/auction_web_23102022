@@ -11,14 +11,15 @@ export default {
     getters: {
         bids: state => state.bids,
         bid: state => state.bid,
-        show_dialog: state => state.show_dialog
+        show_dialog: state => state.show_dialog,
+        winner: state => state.winner
     },
     state: {
         bids: [],
         bid: {
             id_product_auction: '',
         },
-        show_dialog: false
+        show_dialog: false,
     },
     mutations: {
         SET_BIDS(state, payload) {
@@ -32,7 +33,7 @@ export default {
         },
         SET_SHOW_DIALOG(state, payload) {
             state.show_dialog = payload
-        }
+        },
     },
     actions: {
         async fetchBids({commit, dispatch}, id) {
@@ -53,6 +54,9 @@ export default {
         },
         addBid({}, payload) {
             return ApiCaller('customer').post(URLS.CUSTOMER_PRODUCT_DETAIL_BIDDING(payload.id_product_auction), payload)
+        },
+        addWinner({}, payload) {
+            return ApiCaller('customer').post(URLS.CUSTOMER_PRODUCT_WINNER(), payload)
         }
     }
 }

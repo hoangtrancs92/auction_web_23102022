@@ -26,6 +26,7 @@ export const URLS = {
     CUSTOMER_PRODUCT_AUCTION_EXPIRED: (id) => `${getBaseUrl()}/customer/product-auction-customer-expired/${id}`,
     CUSTOMER_PRODUCT_DETAIL: (id) => `${getBaseUrl()}/customer/product-detail/${id}`,
     CUSTOMER_PRODUCT_DETAIL_BIDDING: (id) => `${getBaseUrl()}/customer/product-detail/bids/${id}`,
-    CUSTOMER_PRODUCT_LIST_BIDDING: (id) => `${getBaseUrl()}/customer/product-detail/bids/${id}`
+    CUSTOMER_PRODUCT_LIST_BIDDING: (id) => `${getBaseUrl()}/customer/product-detail/bids/${id}`,
+    CUSTOMER_PRODUCT_WINNER: () => `${getBaseUrl()}/customer/product-detail/win-bidding`
 
 }

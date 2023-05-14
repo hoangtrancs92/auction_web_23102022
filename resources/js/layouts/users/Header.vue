@@ -2,7 +2,7 @@
     <header>
         <div class="block-logo">
             <img alt="Logo" :src="logoImage()" />
-            <router-link :to="{name: UserHome}" class="logo">Bidding</router-link>
+            <router-link :to="{name: UserHome}" class="logo">OUBid</router-link>
         </div>
         <div class="group">
             <ul class="navigation">

@@ -19,6 +19,7 @@ export default {
             state.auctions = payload
         },
         SET_AUCTION(state, payload) {
+            console.log(payload);
             state.auction = payload
         },
         CHANGE_STATUS_DIALOG_AUCTION(state, payload) {

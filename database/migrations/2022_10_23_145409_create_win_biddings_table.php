@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_bid');
             $table->unsignedBigInteger('id_payment');
             $table->unsignedBigInteger('id_transport_admin');
+            $table->integer('id_user')->nullable();
             $table->timestamps();
 
             $table->foreign('id_bid')->references('id')->on('bids');
